@@ -21,17 +21,21 @@ System Components and Architecture:
 ### Detailed Design
 ***1. Traffic Density Measurement***
 Sensors and Counters: Use infrared or ultrasonic sensors to detect vehicle presence. Connect these sensors to counters to count the number of vehicles passing or waiting at a signal.
+
 ***2. Traffic Signal Control Logic***
 State Machine (FSM): Design a finite state machine to control the traffic lights. States will represent different phases of traffic signals (e.g., green, yellow, red).
 Flip-Flops: Use flip-flops to store the state of each traffic signal.
 Transition Logic: Design combinational logic circuits to determine state transitions based on sensor inputs (e.g., if traffic density is high, extend the green light duration).
+
 ***3. Dynamic Signal Timing Adjustment***
 Multiplexer: Use a multiplexer to select which intersection's sensor data to process.
 Priority Encoder: Implement a priority encoder to prioritize emergency vehicles. If an emergency vehicle is detected, it overrides the normal traffic signal sequence.
 Timing Control: Use counters to manage the duration of each traffic light phase. The counter values can be dynamically adjusted based on traffic density.
+
 ***4. Integration and Control***
 Controller Unit: Design a central controller unit (using a microcontroller or FPGA) to integrate all the components. The controller will read sensor data, process it, and output control signals to the traffic lights.
 RTL Schematic: Create the RTL schematic to visualize and simulate the circuit design before implementation.
+
 ## Implementation and Testing
 ### Simulation:
 
