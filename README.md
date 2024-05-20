@@ -59,6 +59,7 @@ Optimize the signal timing algorithms and hardware configuration based on test r
 
 ***Register No :*** 212223240130
 
+
 ```
 module TrafficLightController(
     input clk,
