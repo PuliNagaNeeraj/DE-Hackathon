@@ -169,7 +169,7 @@ endmodule
 ```
 ## RTL SCHEMATIC DIAGRAM : 
 
-![image](https://github.com/PuliNagaNeeraj/DE-Hackathon/assets/138849173/1ebd9278-72c8-4e61-ad49-fcdb259becc6)
+![image](https://github.com/PuliNagaNeeraj/DE-Hackathon/assets/138849173/9147921c-16c8-4221-a1e3-ed9bc93164e8)
 
 ## WAVEFORM :
 
