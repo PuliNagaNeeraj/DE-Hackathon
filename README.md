@@ -53,3 +53,127 @@ Connect the sensors and traffic lights to the FPGA and test the real-time perfor
 
 Validate the system in a real-world or simulated traffic environment.
 Optimize the signal timing algorithms and hardware configuration based on test results to improve efficiency and reduce congestion.
+
+## PROGRAM
+***Developed by :*** PULI NAGA NEERAJ
+***Register No :*** 212223240130
+
+```
+module TrafficLightController(
+    input clk,
+    output reg red1,
+    output reg yellow1,
+    output reg green1,
+    output reg red2,
+    output reg yellow2,
+    output reg green2,
+    output reg red3,
+    output reg yellow3,
+    output reg green3
+);
+
+// State machine definition
+parameter S_IDLE = 2'b00;
+parameter S_ROAD1 = 2'b01;
+parameter S_ROAD2 = 2'b10;
+parameter S_ROAD3 = 2'b11;
+
+reg [1:0] state;
+reg [3:0] count;
+
+always @(posedge clk) begin
+    // State transition
+    case(state)
+        S_IDLE: begin
+            count <= count + 1;
+            if (count == 5) begin
+                state <= S_ROAD1;
+                count <= 0;
+            end
+        end
+        S_ROAD1: begin
+            count <= count + 1;
+            if (count == 5) begin
+                state <= S_ROAD2;
+                count <= 0;
+            end
+        end
+        S_ROAD2: begin
+            count <= count + 1;
+            if (count == 5) begin
+                state <= S_ROAD3;
+                count <= 0;
+            end
+        end
+        S_ROAD3: begin
+            count <= count + 1;
+            if (count == 5) begin
+                state <= S_IDLE;
+                count <= 0;
+            end
+        end
+    endcase
+end
+
+// Traffic light control logic
+always @(*) begin
+    case(state)
+        S_IDLE: begin
+            red1 = 1;
+            yellow1 = (count >= 1 && count <= 4) ? 1 : 0;
+            green1 = 0;
+            red2 = 1;
+            yellow2 = 0;
+            green2 = 0;
+            red3 = 1;
+            yellow3 = 0;
+            green3 = 0;
+        end
+        S_ROAD1: begin
+            red1 = 0;
+            yellow1 = (count >= 6 && count <= 9) ? 1 : 0;
+            green1 = (count >= 1 && count <= 5) ? 1 : 0;
+            red2 = 1;
+            yellow2 = (count >= 6 && count <= 9) ? 1 : 0;
+            green2 = 0;
+            red3 = 1;
+            yellow3 = 0;
+            green3 = 0;
+        end
+        S_ROAD2: begin
+            red1 = 1;
+            yellow1 = 0;
+            green1 = 0;
+            red2 = 0;
+            yellow2 = (count >= 1 && count <= 4) ? 1 : 0;
+            green2 = (count >= 6 && count <= 9) ? 1 : 0;
+            red3 = 1;
+            yellow3 = (count >= 6 && count <= 9) ? 1 : 0;
+            green3 = 0;
+        end
+        S_ROAD3: begin
+            red1 = 1;
+            yellow1 = 0;
+            green1 = 0;
+            red2 = 1;
+            yellow2 = 0;
+            green2 = 0;
+            red3 = 0;
+            yellow3 = (count >= 1 && count <= 4) ? 1 : 0;
+            green3 = (count >= 6 && count <= 9) ? 1 : 0;
+        end
+    endcase
+end
+
+endmodule
+```
+## RTL SCHEMATIC DIAGRAM : 
+
+![image](https://github.com/PuliNagaNeeraj/DE-Hackathon/assets/138849173/1ebd9278-72c8-4e61-ad49-fcdb259becc6)
+
+## WAVEFORM :
+
+![image](https://github.com/PuliNagaNeeraj/DE-Hackathon/assets/138849173/418c8ddb-4aaf-4a51-94d7-6071c8684baa)
+
+## RESULT : 
+The above Verilog code implements a traffic light controller for a three-road intersection. The system cycles through states, each representing different roads having green, yellow, or red lights, while ensuring synchronization of traffic signals. The hackathon top-level module integrates the traffic light controller, enabling efficient traffic management and reducing congestion by systematically controlling the light transitions based on a state machine.
