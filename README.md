@@ -13,9 +13,13 @@ Implement a method to gather and process traffic density data from different int
 System Components and Architecture:
 
 ***Sensors:***  Use sensors to detect the number of vehicles at each intersection.
+
 ***Counters:*** Count the number of vehicles and time spent at each signal.
+
 ***Multiplexers:*** Select input from different sensors and direct them to a common processing unit.
+
 ***Flip-Flops:*** Store the current state of traffic lights and transition states.
+
 ***Encoders and Decoders:*** Convert data from sensors into a form that can be processed by the controller.
 
 ### Detailed Design
